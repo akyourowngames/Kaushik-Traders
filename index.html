@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaushik Hardware | Build Stronger</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Oswald', 'sans-serif'],
+            },
+            colors: {
+              hardware: {
+                orange: '#f97316',
+                dark: '#0f172a',
+                light: '#f8fafc',
+                accent: '#eab308',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #0f172a; color: #f8fafc; }
+        
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: float 5s ease-in-out infinite 1s;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.25",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="overflow-x-hidden font-sans selection:bg-hardware-orange selection:text-white">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 bg-transparent">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 bg-hardware-orange rounded flex items-center justify-center font-display font-bold text-2xl text-white group-hover:bg-white group-hover:text-hardware-orange transition-colors">
+                    K
+                </div>
+                <span class="font-display text-xl md:text-2xl font-bold tracking-wide uppercase text-white">
+                    Kaushik <span class="text-hardware-orange">Hardware</span>
+                </span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-300 hover:text-hardware-orange font-medium text-sm tracking-wide transition-colors uppercase">Home</a>
+                <a href="#products" class="text-gray-300 hover:text-hardware-orange font-medium text-sm tracking-wide transition-colors uppercase">Products</a>
+                <a href="#services" class="text-gray-300 hover:text-hardware-orange font-medium text-sm tracking-wide transition-colors uppercase">Services</a>
+                <a href="#testimonials" class="text-gray-300 hover:text-hardware-orange font-medium text-sm tracking-wide transition-colors uppercase">Testimonials</a>
+                <a href="#contact" class="text-gray-300 hover:text-hardware-orange font-medium text-sm tracking-wide transition-colors uppercase">Contact</a>
+                
+                <a href="tel:+919876543210" class="flex items-center gap-2 bg-hardware-orange hover:bg-orange-600 text-white px-5 py-2 rounded-full font-bold transition-all transform hover:scale-105">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                    <span>Call Now</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-hardware-dark border-t border-gray-800 absolute w-full left-0 top-full shadow-xl">
+            <div class="flex flex-col p-4 space-y-4">
+                <a href="#home" class="mobile-link text-gray-300 hover:text-hardware-orange font-medium text-lg">Home</a>
+                <a href="#products" class="mobile-link text-gray-300 hover:text-hardware-orange font-medium text-lg">Products</a>
+                <a href="#services" class="mobile-link text-gray-300 hover:text-hardware-orange font-medium text-lg">Services</a>
+                <a href="#testimonials" class="mobile-link text-gray-300 hover:text-hardware-orange font-medium text-lg">Testimonials</a>
+                <a href="#contact" class="mobile-link text-gray-300 hover:text-hardware-orange font-medium text-lg">Contact</a>
+                <a href="tel:+919876543210" class="flex items-center justify-center gap-2 bg-hardware-orange text-white px-5 py-3 rounded font-bold w-full">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                    <span>Call Now</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Hardware Tools" class="w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-r from-hardware-dark via-hardware-dark/90 to-transparent"></div>
+        </div>
+
+        <div class="container mx-auto px-4 z-10 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left Content -->
+            <div class="reveal text-white space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-hardware-orange/20 border border-hardware-orange/50 rounded-full text-hardware-orange text-sm font-semibold tracking-wider uppercase">
+                    Since 1998
+                </div>
+                
+                <h1 class="font-display text-5xl md:text-7xl font-bold leading-tight">
+                    BUILT FOR <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-hardware-orange to-hardware-accent">
+                        BEAST MODE.
+                    </span>
+                </h1>
+                
+                <p class="text-gray-400 text-lg md:text-xl max-w-lg">
+                    Your one-stop shop for professional tools, building materials, and home improvement essentials in Jaipur.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#products" class="px-8 py-4 bg-hardware-orange hover:bg-orange-600 text-white font-bold rounded flex items-center justify-center gap-2 transition-transform hover:scale-105">
+                        Browse Products <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://wa.me/919876543210" target="_blank" class="px-8 py-4 border border-gray-500 hover:border-white text-white font-bold rounded flex items-center justify-center gap-2 hover:bg-white/10 transition-colors">
+                        WhatsApp Order <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Content - Animated Cards -->
+            <div class="hidden md:block relative h-[500px] reveal" style="transition-delay: 200ms;">
+                <!-- Card 1 -->
+                <div class="absolute top-10 right-10 bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-2xl w-64 z-20 animate-float">
+                    <div class="h-40 bg-gray-700 rounded mb-4 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=400&q=80" alt="Drill" class="object-cover w-full h-full opacity-80">
+                    </div>
+                    <div class="h-4 w-3/4 bg-gray-600 rounded mb-2"></div>
+                    <div class="h-4 w-1/2 bg-hardware-orange rounded"></div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="absolute bottom-20 left-10 bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-2xl w-64 z-10 animate-float-delayed">
+                    <div class="h-40 bg-gray-700 rounded mb-4 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&w=400&q=80" alt="Paint" class="object-cover w-full h-full opacity-80">
+                    </div>
+                    <div class="h-4 w-3/4 bg-gray-600 rounded mb-2"></div>
+                    <div class="h-4 w-1/2 bg-yellow-500 rounded"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="products" class="py-20 bg-hardware-dark relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-4xl font-bold text-white mb-4">
+                    PRODUCT <span class="text-hardware-orange">CATEGORIES</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Everything you need under one roof. From heavy machinery to the smallest screw, we have it stocked.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="categories-grid">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div class="reveal">
+                    <h2 class="font-display text-4xl font-bold text-white mb-2">
+                        FEATURED <span class="text-hardware-orange">PRODUCTS</span>
+                    </h2>
+                    <p class="text-gray-400">Top picks for professionals this month.</p>
+                </div>
+                <a href="#" class="hidden md:block text-hardware-orange font-bold hover:underline mt-4 md:mt-0">
+                    View All Inventory &rarr;
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="products-grid">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-hardware-dark relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-hardware-orange/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-4xl font-bold text-white mb-4">
+                    SERVICES WE <span class="text-hardware-orange">OFFER</span>
+                </h2>
+                <p class="text-gray-400">More than just a shop. We are your project partners.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24" id="services-grid">
+                <!-- Filled by JS -->
+            </div>
+
+            <!-- Why Us -->
+            <div id="why-us" class="grid lg:grid-cols-2 gap-16 items-center bg-gray-800/30 p-8 md:p-12 rounded-3xl border border-gray-700 reveal">
+                <div>
+                    <h3 class="font-display text-3xl font-bold text-white mb-6">
+                        Why Professionals Choose <span class="text-hardware-orange">Kaushik Hardware</span>?
+                    </h3>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="text-hardware-accent mt-1 w-5 h-5"></i> Trusted by over 500 local contractors.</li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="text-hardware-accent mt-1 w-5 h-5"></i> Genuine products with manufacturer warranty.</li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="text-hardware-accent mt-1 w-5 h-5"></i> Competitive wholesale pricing.</li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="text-hardware-accent mt-1 w-5 h-5"></i> Fast, reliable delivery network.</li>
+                    </ul>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-hardware-orange text-white p-6 rounded-xl border-none text-center">
+                        <div class="text-3xl md:text-4xl font-display font-bold mb-1">25+</div>
+                        <div class="text-sm font-medium uppercase tracking-wider text-orange-100">Years in Business</div>
+                    </div>
+                    <div class="bg-gray-900 text-hardware-orange p-6 rounded-xl border border-gray-700 text-center">
+                        <div class="text-3xl md:text-4xl font-display font-bold mb-1">5000+</div>
+                        <div class="text-sm font-medium uppercase tracking-wider text-gray-500">Products Stocked</div>
+                    </div>
+                    <div class="bg-gray-900 text-hardware-orange p-6 rounded-xl border border-gray-700 text-center">
+                        <div class="text-3xl md:text-4xl font-display font-bold mb-1">10k+</div>
+                        <div class="text-sm font-medium uppercase tracking-wider text-gray-500">Happy Customers</div>
+                    </div>
+                    <div class="p-6 rounded-xl border border-gray-700 bg-gray-900 flex items-center justify-center">
+                        <span class="text-gray-500 font-display font-bold text-xl">Since 1998</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2 reveal">
+                    <div class="relative">
+                        <div class="absolute top-4 -left-4 w-full h-full border-2 border-hardware-orange rounded-lg"></div>
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="About" class="rounded-lg shadow-2xl relative z-10 w-full">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 space-y-6 reveal" style="transition-delay: 200ms;">
+                    <h2 class="font-display text-4xl font-bold text-white">
+                        ABOUT <span class="text-hardware-orange">KAUSHIK HARDWARE</span>
+                    </h2>
+                    <div class="h-1 w-20 bg-hardware-orange"></div>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        Established in 1998, Kaushik Hardware started as a small family-run shop in the heart of the city. Over the last two decades, we have grown into one of the most trusted suppliers of industrial tools and building materials in the region.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed">
+                        We believe in honest pricing and genuine advice. Whether you are a large-scale contractor building a high-rise or a homeowner fixing a leaky tap, we treat every customer with the same respect and dedication. Our goal is simple: to help you build stronger.
+                    </p>
+                    <div class="pt-4">
+                        <span class="font-display font-bold text-2xl text-white block">Mr. Rajesh Kaushik</span>
+                        <span class="text-hardware-orange">Founder & Owner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-hardware-dark relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-4xl font-bold text-white mb-4">
+                    CUSTOMER <span class="text-hardware-orange">STORIES</span>
+                </h2>
+                <p class="text-gray-400">Don't just take our word for it.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8" id="testimonials-grid">
+               <!-- Filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-4xl font-bold text-white mb-4">
+                    VISIT <span class="text-hardware-orange">US</span>
+                </h2>
+                <p class="text-gray-400">We are open 7 days a week to serve you.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Info -->
+                <div class="space-y-8 reveal">
+                    <div class="grid gap-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-gray-800 p-3 rounded-lg text-hardware-orange"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg mb-1">Our Location</h4>
+                                <p class="text-gray-400 max-w-xs">Shop No. 12, Main Market Road, Civil Lines, Jaipur, Rajasthan 302006</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-gray-800 p-3 rounded-lg text-hardware-orange"><i data-lucide="phone" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg mb-1">Call Us</h4>
+                                <a href="tel:+919876543210" class="text-gray-400 hover:text-white transition-colors block">+91 98765 43210</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-gray-800 p-3 rounded-lg text-hardware-orange"><i data-lucide="mail" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg mb-1">Email</h4>
+                                <a href="mailto:sales@kaushikhardware.com" class="text-gray-400 hover:text-white transition-colors block">sales@kaushikhardware.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-gray-800 p-3 rounded-lg text-hardware-orange"><i data-lucide="clock" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg mb-1">Timings</h4>
+                                <p class="text-gray-400">Mon – Sun: 9:00 AM – 9:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="w-full h-64 bg-gray-800 rounded-xl overflow-hidden relative group">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227748.3825624477!2d75.65046970649679!3d26.88544791796718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0; opacity: 0.6;" allowfullscreen="" loading="lazy" class="grayscale group-hover:grayscale-0 transition-all duration-500"></iframe>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 reveal" style="transition-delay: 200ms;">
+                    <h3 class="text-2xl font-bold text-white mb-6">Send us a message</h3>
+                    <form onsubmit="event.preventDefault(); alert('Message Sent!');" class="space-y-4">
+                        <div>
+                            <label class="block text-gray-400 text-sm mb-2">Your Name</label>
+                            <input type="text" class="w-full bg-gray-900 border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-hardware-orange transition-colors" placeholder="John Doe" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-400 text-sm mb-2">Phone Number</label>
+                            <input type="tel" class="w-full bg-gray-900 border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-hardware-orange transition-colors" placeholder="+91" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-400 text-sm mb-2">Message</label>
+                            <textarea rows="4" class="w-full bg-gray-900 border border-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-hardware-orange transition-colors" placeholder="I am looking for..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-hardware-orange hover:bg-orange-600 text-white font-bold py-4 rounded-lg flex items-center justify-center gap-2 transition-transform hover:scale-[1.02]">
+                            Send Message <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-400 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4 text-white">
+                        <div class="w-8 h-8 bg-hardware-orange rounded flex items-center justify-center font-display font-bold text-lg">K</div>
+                        <span class="font-display text-xl font-bold uppercase">Kaushik <span class="text-hardware-orange">Hardware</span></span>
+                    </div>
+                    <p class="text-sm">Your trusted partner for all hardware, tools, and construction materials since 1998.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="hover:text-hardware-orange transition-colors">Home</a></li>
+                        <li><a href="#products" class="hover:text-hardware-orange transition-colors">Products</a></li>
+                        <li><a href="#services" class="hover:text-hardware-orange transition-colors">Services</a></li>
+                        <li><a href="#testimonials" class="hover:text-hardware-orange transition-colors">Testimonials</a></li>
+                        <li><a href="#contact" class="hover:text-hardware-orange transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>+91 98765 43210</li>
+                        <li>sales@kaushikhardware.com</li>
+                        <li>Jaipur, Rajasthan</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-hardware-orange hover:text-white transition-all"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-hardware-orange hover:text-white transition-all"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-hardware-orange hover:text-white transition-all"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
+                <p>&copy; <span id="year">2024</span> Kaushik Hardware. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript logic to fill data and handle interactions -->
+    <script>
+        // 1. Data
+        const categories = [
+            { name: 'Power Tools', description: 'High-performance drills, saws, and grinders.', icon: 'zap' },
+            { name: 'Hand Tools', description: 'Hammers, screwdrivers, wrenches for every job.', icon: 'hammer' },
+            { name: 'Electricals', description: 'Wires, switches, sockets, and lighting.', icon: 'zap' },
+            { name: 'Plumbing', description: 'Pipes, faucets, valves, and fittings.', icon: 'droplets' },
+            { name: 'Paints', description: 'Interior, exterior paints and wall putty.', icon: 'paint-bucket' },
+            { name: 'Building Material', description: 'Cement, sand, and adhesives.', icon: 'brick-wall' },
+            { name: 'Safety Gear', description: 'Helmets, gloves, boots, and vests.', icon: 'hard-hat' },
+            { name: 'Hardware', description: 'Nuts, bolts, screws, and fasteners.', icon: 'bolt' },
+        ];
+
+        const products = [
+            { name: 'Bosch Pro Drill 500W', description: 'Professional grade impact drill for concrete and steel.', price: '₹3,499', badge: 'Best Seller', image: 'https://picsum.photos/id/1/400/300' },
+            { name: 'Asian Paints Royale (20L)', description: 'Luxury emulsion for smooth interior walls.', price: '₹7,800', badge: 'Recommended', image: 'https://picsum.photos/id/10/400/300' },
+            { name: 'Heavy Duty Pipe Wrench', description: '14-inch steel wrench for industrial plumbing.', price: '₹850', image: 'https://picsum.photos/id/25/400/300' },
+            { name: 'Havells LED Flood Light', description: '50W waterproof outdoor light.', price: '₹1,200', badge: 'New', image: 'https://picsum.photos/id/30/400/300' }
+        ];
+
+        const services = [
+            { title: 'Bulk Supply', description: 'Special rates for contractors and large construction projects.', icon: 'truck' },
+            { title: 'Expert Guidance', description: 'Free advice on choosing the right materials for your DIY needs.', icon: 'users' },
+            { title: 'Custom Orders', description: 'We source specialized tools and rare parts upon request.', icon: 'clipboard-list' },
+            { title: 'Site Delivery', description: 'Fast delivery to construction sites within the city.', icon: 'truck' },
+        ];
+
+        const testimonials = [
+            { name: 'Rohit Sharma', role: 'Civil Contractor', content: 'Kaushik Hardware is my go-to for all site supplies. Their delivery is always on time, and the quality is genuine.', rating: 5 },
+            { name: 'Anjali Gupta', role: 'DIY Enthusiast', content: 'The staff helped me pick the right paint and brushes for my home renovation. Very patient and knowledgeable.', rating: 5 },
+            { name: 'Vikram Singh', role: 'Electrician', content: 'Best rates in the market for branded electrical switches and wires. Highly recommended.', rating: 4 }
+        ];
+
+        // 2. Render Functions
+        const renderCategories = () => {
+            const container = document.getElementById('categories-grid');
+            if(!container) return;
+            container.innerHTML = categories.map((cat, i) => `
+                <div class="reveal bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-hardware-orange p-6 rounded-xl group cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/10" style="transition-delay: ${i * 100}ms">
+                    <div class="w-12 h-12 bg-gray-700 group-hover:bg-hardware-orange rounded-lg flex items-center justify-center mb-4 transition-colors duration-300">
+                        <i data-lucide="${cat.icon}" class="text-white w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-hardware-orange transition-colors">${cat.name}</h3>
+                    <p class="text-sm text-gray-400">${cat.description}</p>
+                </div>
+            `).join('');
+        };
+
+        const renderProducts = () => {
+            const container = document.getElementById('products-grid');
+            if(!container) return;
+            container.innerHTML = products.map((p, i) => `
+                <div class="reveal bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-hardware-orange/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group" style="transition-delay: ${i * 100}ms">
+                    <div class="relative h-48 overflow-hidden">
+                        ${p.badge ? `<span class="absolute top-2 left-2 bg-hardware-accent text-gray-900 text-xs font-bold px-2 py-1 rounded z-10 shadow-sm">${p.badge}</span>` : ''}
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out">
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                            <a href="https://wa.me/919876543210" target="_blank" class="bg-white text-gray-900 px-5 py-2 rounded-full font-bold text-sm hover:bg-hardware-orange hover:text-white transition-all transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-300 delay-75 shadow-lg">Enquire Now</a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-white mb-1 truncate">${p.name}</h3>
+                        <p class="text-sm text-gray-400 mb-3 h-10 overflow-hidden line-clamp-2">${p.description}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-hardware-orange font-bold text-lg">${p.price}</span>
+                            <button class="text-gray-400 hover:text-white transition-colors bg-gray-700/50 p-2 rounded-full hover:bg-hardware-orange"><i data-lucide="shopping-cart" class="w-4 h-4"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        };
+
+        const renderServices = () => {
+            const container = document.getElementById('services-grid');
+            if(!container) return;
+            container.innerHTML = services.map((s, i) => `
+                <div class="reveal bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700/50 hover:border-hardware-orange/50 transition-colors text-center" style="transition-delay: ${i * 100}ms">
+                    <div class="inline-flex p-4 bg-gray-800 rounded-full text-hardware-orange mb-6 shadow-inner">
+                         <i data-lucide="${s.icon}" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">${s.title}</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">${s.description}</p>
+                </div>
+            `).join('');
+        };
+
+        const renderTestimonials = () => {
+            const container = document.getElementById('testimonials-grid');
+            if(!container) return;
+            container.innerHTML = testimonials.map((t, i) => `
+                <div class="reveal bg-gray-800 p-8 rounded-xl border border-gray-700 relative" style="transition-delay: ${i * 200}ms">
+                    <div class="absolute top-4 right-4 text-gray-700"><i data-lucide="quote" class="w-8 h-8"></i></div>
+                    <div class="flex gap-1 mb-4 text-yellow-400">
+                        ${[...Array(5)].map((_, idx) => `<i data-lucide="star" class="w-4 h-4 ${idx < t.rating ? 'fill-current' : 'text-gray-600'}"></i>`).join('')}
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"${t.content}"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center text-white font-bold">${t.name[0]}</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">${t.name}</h4>
+                            <p class="text-hardware-orange text-xs uppercase font-semibold">${t.role}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        };
+
+        // 3. Init Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderProducts();
+            renderServices();
+            renderTestimonials();
+            
+            // Set year
+            document.getElementById('year').innerText = new Date().getFullYear();
+
+            // Icons
+            lucide.createIcons();
+
+            // Mobile Menu
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            
+            if(menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = mobileMenu.classList.contains('hidden') ? 'menu' : 'x';
+                    menuBtn.innerHTML = `<i data-lucide="${icon}" class="w-7 h-7"></i>`;
+                    lucide.createIcons();
+                });
+
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        menuBtn.innerHTML = `<i data-lucide="menu" class="w-7 h-7"></i>`;
+                        lucide.createIcons();
+                    });
+                });
+            }
+
+            // Scroll Navbar
+            const navbar = document.getElementById('navbar');
+            if(navbar) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('bg-hardware-dark/95', 'backdrop-blur-md', 'shadow-lg', 'py-2');
+                        navbar.classList.remove('py-4', 'bg-transparent');
+                    } else {
+                        navbar.classList.remove('bg-hardware-dark/95', 'backdrop-blur-md', 'shadow-lg', 'py-2');
+                        navbar.classList.add('py-4', 'bg-transparent');
+                    }
+                });
+            }
+
+            // Scroll Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
